@@ -111,30 +111,34 @@ function formingMagicSquareV2(s) {
   // Write your code here
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   let arrCopy = [...s];
-  let res = 0; 
+  let res = 0;
   //
   while (
     //
     // Checks Row Sum Same
     //
-    arrCopy[0].reduce(reducer) != arrCopy[1].reduce(reducer) ||
-    arrCopy[1].reduce(reducer) != arrCopy[2].reduce(reducer) ||
+    (arrCopy[0].reduce(reducer) != arrCopy[1].reduce(reducer) ||
+      arrCopy[1].reduce(reducer) != arrCopy[2].reduce(reducer) ||
+      //
+      // Checks Columns Sum Same
+      //
+      arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] !=
+        arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] ||
+      arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] !=
+        arrCopy[0][2] + arrCopy[1][2] + arrCopy[2][2]) &&
     //
-    // Checks Columns Sum Same
+    //  Make sure res is under 10
     //
-    arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] !=
-    arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] ||
-    arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] !=
-    arrCopy[0][2] + arrCopy[1][2] + arrCopy[2][2]
+    res < 10
   ) {
-    console.log('Hi')
+    console.log("Hi");
     if (
       arrCopy[0].reduce(reducer) != arrCopy[1].reduce(reducer) ||
       arrCopy[1].reduce(reducer) != arrCopy[2].reduce(reducer)
     ) {
       //  If True There's an Issue with Rows
       //
-      console.log('Hi2')
+      console.log("Hi2");
       let missingValRow1 = 15 - arrCopy[0].reduce(reducer);
       let missingValRow2 = 15 - arrCopy[1].reduce(reducer);
       let missingValRow3 = 15 - arrCopy[2].reduce(reducer);
@@ -143,7 +147,14 @@ function formingMagicSquareV2(s) {
         Math.abs(missingValRow1) +
         Math.abs(missingValRow2) +
         Math.abs(missingValRow3);
-      console.log(missingValRow1, missingValRow2, missingValRow3);
+      //
+      if (
+        arrCopy[0].reduce(reducer) === 15 &&
+        arrCopy[1].reduce(reducer) === 15 &&
+        arrCopy[1].reduce(reducer) === 15 
+      ) {
+        break;
+      }
       //
       //  Determine which column doesn't add up, then modify Arr for Loop
       //
@@ -172,8 +183,9 @@ function formingMagicSquareV2(s) {
             ? missingValRow2
             : missingValRow3;
       }
+      console.log("Res ---------->", res);
     } else {
-      console.log('Hi3')
+      console.log("Hi3");
       // //  Else Issue with Columns
       // //
       // if (arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] != 15) {
@@ -199,7 +211,7 @@ function formingMagicSquareV2(s) {
 }
 
 formingMagicSquareV2([
-  [4, 9, 2],
-  [3, 5, 7],
-  [8, 1, 5],
+  [4, 8, 2],
+  [4, 5, 7],
+  [6, 1, 6],
 ]);
