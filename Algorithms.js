@@ -35,7 +35,7 @@ function formingMagicSquare(s) {
   const sumColTwo = firstRow[1] + secondRow[1] + thirdRow[1];
   const sumColThr = firstRow[2] + secondRow[2] + thirdRow[2];
   let missingValObj = { first: 0, second: 0, third: 0 };
-  let arrCpy = [...s];
+  let arrCopy = [...s];
   let res = 0;
   //
   // Check Row Sums
@@ -62,39 +62,39 @@ function formingMagicSquare(s) {
     //  Check which column isn't adding up
     //
     if (sumColOne != 15) {
-      // This guy is the problem arrCpy[0][0]
+      // This guy is the problem arrCopy[0][0]
     } else if (sumColTwo != 15) {
-      // This guy is the problem arrCpy[0][1]
+      // This guy is the problem arrCopy[0][1]
     } else if (sumColThr != 15) {
-      // This guy is the problem arrCpy[0][2]
+      // This guy is the problem arrCopy[0][2]
     }
   } else if (missingValObj.second != 0) {
     //
     //  Check which column isn't adding up
     //
     if (sumColOne != 15) {
-      // This guy is the problem arrCpy[1][0]
+      // This guy is the problem arrCopy[1][0]
     } else if (sumColTwo != 15) {
-      // This guy is the problem arrCpy[1][1]
+      // This guy is the problem arrCopy[1][1]
     } else if (sumColThr != 15) {
-      // This guy is the problem arrCpy[1][2]
+      // This guy is the problem arrCopy[1][2]
     }
   } else if (missingValObj.third != 0) {
     //
     //  Check which column isn't adding up
     //
     if (sumColOne != 15) {
-      // This guy is the problem arrCpy[2][0]
-      arrCpy[2][0] += missingValObj.third;
-      res = Math.abs(arrCpy[2][0]);
+      // This guy is the problem arrCopy[2][0]
+      arrCopy[2][0] += missingValObj.third;
+      res = Math.abs(arrCopy[2][0]);
     } else if (sumColTwo != 15) {
-      // This guy is the problem arrCpy[2][1]
-      arrCpy[2][1] += missingValObj.third;
-      res = Math.abs(arrCpy[2][1]);
+      // This guy is the problem arrCopy[2][1]
+      arrCopy[2][1] += missingValObj.third;
+      res = Math.abs(arrCopy[2][1]);
     } else if (sumColThr != 15) {
-      // This guy is the problem arrCpy[2][2]
-      arrCpy[2][2] += missingValObj.third;
-      res = Math.abs(arrCpy[2][1]);
+      // This guy is the problem arrCopy[2][2]
+      arrCopy[2][2] += missingValObj.third;
+      res = Math.abs(arrCopy[2][1]);
     }
   }
   //
@@ -107,83 +107,95 @@ formingMagicSquare([
   [8, 1, 5],
 ]);
 
-
 function formingMagicSquareV2(s) {
   // Write your code here
-  const reducer = (accumulator, currentValue) => accumulator + currentValue
-  let arrCopy = [...s]
-  let res = 0
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  let arrCopy = [...s];
+  let res = 0; 
+  //
   while (
-      //
-      // Checks Row Sum Same
-      //
-      arrCopy[0].reduce(reducer) !=
-      arrCopy[1].reduce(reducer) &&
-      arrCopy[1].reduce(reducer) !=
-      arrCopy[2].reduce(reducer) &&
-      //
-      // Checks Columns Sum Same
-      //
-      arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] !=
-      arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] &&
-      arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] !=
-      arrCopy[0][2] + arrCopy[1][2] + arrCopy[2][2]
+    //
+    // Checks Row Sum Same
+    //
+    arrCopy[0].reduce(reducer) != arrCopy[1].reduce(reducer) ||
+    arrCopy[1].reduce(reducer) != arrCopy[2].reduce(reducer) ||
+    //
+    // Checks Columns Sum Same
+    //
+    arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] !=
+    arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] ||
+    arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] !=
+    arrCopy[0][2] + arrCopy[1][2] + arrCopy[2][2]
   ) {
-      if (
-          arrCopy[0].reduce(reducer) !=
-          arrCopy[1].reduce(reducer) &&
-          arrCopy[1].reduce(reducer) !=
-          arrCopy[2].reduce(reducer)
-      ) {  
-          //  If True There's an Issue with Rows
-          //
-          let missingValRow1 = 15 - arrCopy[0].reduce(reducer)
-          let missingValRow2 = 15 - arrCopy[1].reduce(reducer)
-          let missingValRow3 = 15 - arrCopy[2].reduce(reducer)
-          //
-          res += Math.abs(missingValRow1) + Math.abs(missingValRow2)
-              + Math.abs(missingValRow3)
-          // 
-          //  Determine which column doesn't add up, then modify Arr for Loop
-          //
-          if (arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] != 15) {
-              //  Column1
-              arrCpy[2][0] += missingValRow1 != 0 ? missingValRow1 : (
-                              missingValRow2 != 0 ? missingValRow2 : missingValRow3)
-          }
-          else if (arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] != 15) {
-              // Column2
-              arrCpy[2][1] += missingValRow1 != 0 ? missingValRow1 : (
-                              missingValRow2 != 0 ? missingValRow2 : missingValRow3)
-          }
-          else if (arrCopy[0][2] + arrCopy[1][2] + arrCopy[2][2] != 15) {
-              // Column3
-              arrCpy[2][2] += missingValRow1 != 0 ? missingValRow1 : (
-                              missingValRow2 != 0 ? missingValRow2 : missingValRow3)
-          }
-      } else { 
-          // //  Else Issue with Columns
-          // //
-          // if (arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] != 15) {
-          //     //  Column1
-          //     arrCpy[2][0] += missingValRow1 != 0 ? missingValRow1 : (
-          //                     missingValRow2 != 0 ? missingValRow2 : missingValRow3)
-          // }
-          // else if (arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] != 15) {
-          //     // Column2
-          //     arrCpy[2][1] += missingValRow1 != 0 ? missingValRow1 : (
-          //                     missingValRow2 != 0 ? missingValRow2 : missingValRow3)
-          // }
-          // else if (arrCopy[0][2] + arrCopy[1][2] + arrCopy[2][2] != 15) {
-          //     // Column3
-          //     arrCpy[2][2] += missingValRow1 != 0 ? missingValRow1 : (
-          //                     missingValRow2 != 0 ? missingValRow2 : missingValRow3)
-          // }
-          break
+    console.log('Hi')
+    if (
+      arrCopy[0].reduce(reducer) != arrCopy[1].reduce(reducer) ||
+      arrCopy[1].reduce(reducer) != arrCopy[2].reduce(reducer)
+    ) {
+      //  If True There's an Issue with Rows
+      //
+      console.log('Hi2')
+      let missingValRow1 = 15 - arrCopy[0].reduce(reducer);
+      let missingValRow2 = 15 - arrCopy[1].reduce(reducer);
+      let missingValRow3 = 15 - arrCopy[2].reduce(reducer);
+      //
+      res +=
+        Math.abs(missingValRow1) +
+        Math.abs(missingValRow2) +
+        Math.abs(missingValRow3);
+      console.log(missingValRow1, missingValRow2, missingValRow3);
+      //
+      //  Determine which column doesn't add up, then modify Arr for Loop
+      //
+      if (arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] != 15) {
+        //  Column1
+        arrCopy[2][0] +=
+          missingValRow1 != 0
+            ? missingValRow1
+            : missingValRow2 != 0
+            ? missingValRow2
+            : missingValRow3;
+      } else if (arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] != 15) {
+        // Column2
+        arrCopy[2][1] +=
+          missingValRow1 != 0
+            ? missingValRow1
+            : missingValRow2 != 0
+            ? missingValRow2
+            : missingValRow3;
+      } else if (arrCopy[0][2] + arrCopy[1][2] + arrCopy[2][2] != 15) {
+        // Column3
+        arrCopy[2][2] +=
+          missingValRow1 != 0
+            ? missingValRow1
+            : missingValRow2 != 0
+            ? missingValRow2
+            : missingValRow3;
       }
+    } else {
+      console.log('Hi3')
+      // //  Else Issue with Columns
+      // //
+      // if (arrCopy[0][0] + arrCopy[1][0] + arrCopy[2][0] != 15) {
+      //     //  Column1
+      //     arrCopy[2][0] += missingValRow1 != 0 ? missingValRow1 : (
+      //                     missingValRow2 != 0 ? missingValRow2 : missingValRow3)
+      // }
+      // else if (arrCopy[0][1] + arrCopy[1][1] + arrCopy[2][1] != 15) {
+      //     // Column2
+      //     arrCopy[2][1] += missingValRow1 != 0 ? missingValRow1 : (
+      //                     missingValRow2 != 0 ? missingValRow2 : missingValRow3)
+      // }
+      // else if (arrCopy[0][2] + arrCopy[1][2] + arrCopy[2][2] != 15) {
+      //     // Column3
+      //     arrCopy[2][2] += missingValRow1 != 0 ? missingValRow1 : (
+      //                     missingValRow2 != 0 ? missingValRow2 : missingValRow3)
+      // }
+      break;
+    }
   }
-  
-  return res
+
+  console.log(res);
 }
 
 formingMagicSquareV2([
@@ -191,4 +203,3 @@ formingMagicSquareV2([
   [3, 5, 7],
   [8, 1, 5],
 ]);
-
