@@ -10,19 +10,19 @@ function aVeryBigSum(arr) {
 // aVeryBigSum([1000000001, 1000000002, 1000000003, 1000000004, 1000000005]);
 
 function diagonalDifference(arr) {
-  let leftToRight = 0;
+  // Write your code here
+  let leftToRight = 0; 
   let rightToLeft = 0;
-  for (i = 0; i < arr.length; i = i + 4) {
-    // leftToRight.push(arr[i]);
-    leftToRight += arr[i];
-  }
-  for (i = arr.length - 3; i > 0; i = i - 2) {
-    // rightToLeft.push(arr[i]);
-    rightToLeft += arr[i];
-  }
-  console.log( Math.abs(leftToRight - rightToLeft))
-  return Math.abs(leftToRight - rightToLeft)
-  //
+  for (let i = 0; i < arr.length; i ++) { 
+    leftToRight += arr[i][i];
+  } 
+  let  j = 0
+  for (let i = arr.length - 1; i >= 0; i--) {  
+    rightToLeft += arr[i][j];
+    j++
+  } 
+  console.log(Math.abs(leftToRight - rightToLeft)) // [leftToRight, rightToLeft]
+
 }
 
-diagonalDifference([11, 2, 4, 4, 5, 6, 10, 8, -12]);
+diagonalDifference([[11, 2, 4], [4, 5, 6], [10, 8, -12]]);
