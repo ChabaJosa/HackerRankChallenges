@@ -151,7 +151,7 @@ function formingMagicSquareV2(s) {
       if (
         arrCopy[0].reduce(reducer) === 15 &&
         arrCopy[1].reduce(reducer) === 15 &&
-        arrCopy[1].reduce(reducer) === 15 
+        arrCopy[1].reduce(reducer) === 15
       ) {
         break;
       }
@@ -216,4 +216,22 @@ function formingMagicSquareV2(s) {
 //   [6, 1, 6],
 // ]);
 
+function plusMinus(arr) {
+  // Write your code here
+  let posCount = 0;
+  let negCount = 0;
+  let zerCount = 0;
+  //
+  arr.forEach((item) => {
+    item > 0 ? posCount++ : item === 0 ? zerCount++ : negCount++;
+    //
+  });
+  //
+  console.log(
+    (posCount / arr.length).toFixed(6),
+    (negCount / arr.length).toFixed(6),
+    (zerCount / arr.length).toFixed(6)
+  );
+}
 
+plusMinus([-4, 3, -9, 0, 4, 1]);
