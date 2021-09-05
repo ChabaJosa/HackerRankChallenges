@@ -101,11 +101,11 @@ function formingMagicSquare(s) {
   console.log(res);
 }
 
-formingMagicSquare([
-  [4, 9, 2],
-  [3, 5, 7],
-  [8, 1, 5],
-]);
+// formingMagicSquare([
+//   [4, 9, 2],
+//   [3, 5, 7],
+//   [8, 1, 5],
+// ]);
 
 function formingMagicSquareV2(s) {
   // Write your code here
@@ -234,4 +234,27 @@ function plusMinus(arr) {
   );
 }
 
-plusMinus([-4, 3, -9, 0, 4, 1]);
+// plusMinus([-4, 3, -9, 0, 4, 1]);
+
+function staircase(n) {
+  // Write your code here
+  let holdArr = [];
+  let resArr = [] 
+  for (let i = 0; i < n; i++) {
+    holdArr.push(String("#").padStart(n - i, "#"));
+  }
+  //
+  holdArr = holdArr.reverse() 
+  //
+  holdArr.forEach((item, i) => {
+    if(item.length <= n){ 
+        resArr.push(item.padStart(n, " "))
+        console.log(item.length, n)
+    } 
+  });
+  //  
+  resArr.forEach(item => {console.log(item)})
+  
+}
+
+staircase(18);
