@@ -239,22 +239,54 @@ function plusMinus(arr) {
 function staircase(n) {
   // Write your code here
   let holdArr = [];
-  let resArr = [] 
+  let resArr = [];
   for (let i = 0; i < n; i++) {
     holdArr.push(String("#").padStart(n - i, "#"));
   }
   //
-  holdArr = holdArr.reverse() 
+  holdArr = holdArr.reverse();
   //
   holdArr.forEach((item, i) => {
-    if(item.length <= n){ 
-        resArr.push(item.padStart(n, " "))
-        console.log(item.length, n)
-    } 
+    if (item.length <= n) {
+      resArr.push(item.padStart(n, " "));
+      console.log(item.length, n);
+    }
   });
-  //  
-  resArr.forEach(item => {console.log(item)})
-  
+  //
+  resArr.forEach((item) => {
+    console.log(item);
+  });
 }
 
-staircase(18);
+// staircase(18);
+
+function gradingStudents(grades) {
+  // https://www.hackerrank.com/challenges/grading/problem
+  //
+  // let res = [];
+  // grades.forEach((item) => {
+  //   let rem = item % 5;
+  //   rem = 5 - rem;
+  //   if (rem < 3 && item > 37 && rem != 0) {
+  //     res.push(item + rem);
+  //   } else {
+  //     res.push(item);
+  //   }
+  // });
+  console.log(
+    grades.map((item) => {
+      let rem = item % 5;
+      rem = 5 - rem;
+      if (rem < 3 && item > 37 && rem != 0) {
+        return item + rem;
+      } else {
+        return item;
+      }
+    })
+  );
+}
+
+gradingStudents([
+  22, 86, 30, 0, 16, 51, 53, 42, 48, 22, 69, 12, 27, 34, 24, 95, 16, 32, 22, 52,
+  56, 71, 95,
+]);
