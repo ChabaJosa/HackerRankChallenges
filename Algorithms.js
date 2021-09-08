@@ -327,3 +327,34 @@ function timeConversion(s) {
 
 timeConversion("12:05:39AM");
 timeConversion("07:05:45PM");
+
+function gradingStudents(grades) {
+  // https://www.hackerrank.com/challenges/grading/problem
+  //
+  // let res = [];
+  // grades.forEach((item) => {
+  //   let rem = item % 5;
+  //   rem = 5 - rem;
+  //   if (rem < 3 && item > 37 && rem != 0) {
+  //     res.push(item + rem);
+  //   } else {
+  //     res.push(item);
+  //   }
+  // });
+  console.log(
+    grades.map((item) => {
+      let rem = item % 5;
+      rem = 5 - rem;
+      if (rem < 3 && item > 37 && rem != 0) {
+        return item + rem;
+      } else {
+        return item;
+      }
+    })
+  );
+}
+
+gradingStudents([
+  22, 86, 30, 0, 16, 51, 53, 42, 48, 22, 69, 12, 27, 34, 24, 95, 16, 32, 22, 52,
+  56, 71, 95,
+]);
