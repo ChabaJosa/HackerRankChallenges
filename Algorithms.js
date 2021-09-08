@@ -239,22 +239,91 @@ function plusMinus(arr) {
 function staircase(n) {
   // Write your code here
   let holdArr = [];
-  let resArr = [] 
+  let resArr = [];
   for (let i = 0; i < n; i++) {
     holdArr.push(String("#").padStart(n - i, "#"));
   }
   //
-  holdArr = holdArr.reverse() 
+  holdArr = holdArr.reverse();
   //
   holdArr.forEach((item, i) => {
-    if(item.length <= n){ 
-        resArr.push(item.padStart(n, " "))
-        console.log(item.length, n)
-    } 
+    if (item.length <= n) {
+      resArr.push(item.padStart(n, " "));
+      console.log(item.length, n);
+    }
   });
-  //  
-  resArr.forEach(item => {console.log(item)})
-  
+  //
+  resArr.forEach((item) => {
+    console.log(item);
+  });
 }
 
-staircase(18);
+// staircase(18);
+
+function miniMaxSum(arr) {
+  // Write your code here
+  let sum = arr.reduce((acc, curr) => acc + curr);
+  let currMax = 0;
+  let currMin = sum;
+  arr.forEach((item) => {
+    sum - item > currMax ? (currMax = sum - item) : null;
+    sum - item < currMin ? (currMin = sum - item) : null;
+  });
+  console.log(currMax, currMin);
+}
+
+// miniMaxSum([1, 3, 5, 7, 9]);
+
+function birthdayCakeCandles(candles) {
+  // Write your code here
+  let currMaxVal = 0;
+  let res = 0;
+  candles.forEach((item) => {
+    if (currMaxVal < item) {
+      let howMany = candles.filter((candle) => item === candle);
+      currMaxVal = howMany[0];
+      res = howMany.length;
+    }
+  });
+  console.log(res);
+}
+
+// birthdayCakeCandles([1, 3, 2, 3]);
+// birthdayCakeCandles([
+//   9547948, 8558390, 9999933, 5148263, 5764559, 906438, 9296778, 1156268,
+//   6642930, 362317, 5884372, 8183642, 1893625, 2078221, 9091567, 9008204,
+//   5596899, 2415143, 3745745, 9999933, 4601052, 2226334, 9999933, 9084710,
+//   6425739, 859550, 7297169, 2560362, 7342790, 6125814, 973515, 7983457, 1411690,
+//   9999933, 7698786, 173508, 9999933, 7146414, 5063134, 6934007, 506731, 9672243,
+//   1791721, 3542431, 9645190, 4101220, 120716, 4815228, 7129154, 1377763,
+//   2420858, 9999933, 2913976, 4704061, 8792535, 8232675, 6865047, 4119291,
+//   7633812, 6646342, 1714025, 653612, 1541039, 2074983, 7203496, 908154, 2567724,
+//   6466771, 9999933, 8767549, 923596, 7545333, 8336840, 7677082, 9224613, 15813,
+//   1946806, 7379477, 9617658, 1431652, 1646399, 4316536, 9054082, 9999933,
+//   7442742, 6195231, 5658010, 5196448, 9299025, 328790, 4842946, 7735895,
+//   6408468, 3643022, 125830, 1311355, 6873837, 3429811, 8806735, 7931003,
+// ]);
+
+function timeConversion(s) {
+  // Write your code here
+  if (s.includes("AM")) {
+    console.log(
+      s.substr(0, 2) !== "12"
+        ? s.substr(0, s.length - 2)
+        : String("00" + s.substr(2, s.length - 2))
+    );
+  } else {
+    let hld = s.split("");
+    let num = Number(`${hld[0]}${hld[1]}`);
+    num += 12;
+    num = String(num);
+    num = String(num + s.substr(2, s.length - 4));
+    // console.log("Hereee",num);
+    console.log(
+      num.substr(0, 2) === "12" ? String("00" + num.substr(2, num.length)) : num
+    );
+  }
+}
+
+timeConversion("12:05:39AM");
+timeConversion("07:05:45PM");
