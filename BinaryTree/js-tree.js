@@ -1,7 +1,7 @@
 // From: https://www.youtube.com/watch?v=ZNH0MuQ51m4
 //
 let tree;
-let nums = [7,47,512, 13,,123, 25,38, 1,54];
+let nums = [7, 47, 512, 13, , 123, 25, 38, 1, 54];
 //
 function setup() {
   tree = new Tree();
@@ -12,12 +12,14 @@ function setup() {
   //   tree.addValue(3);
   //   tree.addValue(7);
   console.log(JSON.stringify(tree, null, 2));
+  tree.traverse()
 }
-
+//
+//  Tree Stuff
+//
 function Tree() {
   this.root = null;
 }
-
 Tree.prototype.addValue = function (val) {
   let n = new Node(val);
   if (this.root === null) {
@@ -26,7 +28,17 @@ Tree.prototype.addValue = function (val) {
     this.root.addNode(n);
   }
 };
-
+Tree.prototype.traverse = function () {
+  this.root.visit();
+};
+//
+//  Node/Algorithm Stuff
+//
+function Node(val) {
+  this.value = val;
+  this.left = null;
+  this.right = null;
+}
 Node.prototype.addNode = function (n) {
   //
   //  Left
@@ -66,11 +78,14 @@ Node.prototype.addNode = function (n) {
   // Equal Value Wont Get Added To The Tree
   //
 };
-
-function Node(val) {
-  this.value = val;
-  this.left = null;
-  this.right = null;
-}
+Node.prototype.visit = function () {
+  if (this.left != null) {
+    this.left.visit();
+  }
+  console.log(this.value);
+  if (this.right != null) {
+    this.right.visit();
+  }
+};
 
 setup();
