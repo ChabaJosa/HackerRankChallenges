@@ -12,7 +12,8 @@ function setup() {
   //   tree.addValue(3);
   //   tree.addValue(7);
   console.log(JSON.stringify(tree, null, 2));
-  tree.traverse()
+  tree.traverse();
+  tree.search(512);
 }
 //
 //  Tree Stuff
@@ -30,6 +31,9 @@ Tree.prototype.addValue = function (val) {
 };
 Tree.prototype.traverse = function () {
   this.root.visit();
+};
+Tree.prototype.search = function (val) {
+  this.root.search(val);
 };
 //
 //  Node/Algorithm Stuff
@@ -85,6 +89,15 @@ Node.prototype.visit = function () {
   console.log(this.value);
   if (this.right != null) {
     this.right.visit();
+  }
+};
+Node.prototype.search = function (val) {
+  if (this.value == val) {
+    console.log("found " + val + " at " + JSON.stringify(this, null, 2));
+  } else if (val < this.value && this.left != null) {
+    this.left.search(val);
+  } else if (val > this.value && this.right != null) {
+    this.right.search(val);
   }
 };
 
